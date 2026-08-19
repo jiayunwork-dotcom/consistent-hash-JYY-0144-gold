@@ -93,7 +93,7 @@ func (r *Ring) rebuildKeys() {
 // node clockwise of hash(key). It returns ErrEmptyRing if the ring is empty.
 func (r *Ring) Get(key string) (string, error) {
 	if len(r.keys) == 0 {
-		return "", nil
+		return "", ErrEmptyRing
 	}
 	h := r.hash(key)
 	idx := sort.Search(len(r.keys), func(i int) bool { return r.keys[i] >= h })
